@@ -11,15 +11,15 @@
         body { background: #050000; color: #fff; font-family: 'Poppins', sans-serif; overflow: hidden; height: 100vh; }
 
         #custom-cursor {
-            position: fixed; width: 20px; height: 20px; background: #ff4d4d; border-radius: 50% 0 50% 0;
-            pointer-events: none; z-index: 10000; transform: translate(-50%, -50%); transition: transform 0.1s ease;
+            position: fixed; width: 25px; height: 25px; background: #ff4d4d; border-radius: 50% 0 50% 0;
+            pointer-events: none; z-index: 10000; transform: translate(-50%, -50%); transition: transform 0.05s linear;
             box-shadow: 0 0 15px #ff0000;
         }
 
         .bg-layer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
             background: radial-gradient(circle at center, #2a0000 0%, #050000 100%); }
 
-        .petal { position: absolute; background: #ff4d4d; border-radius: 150% 0 150% 0; opacity: 0; animation: fall linear infinite; }
+        .petal { position: absolute; background: #ff4d4d; border-radius: 150% 0 150% 0; opacity: 0; animation: fall linear infinite; pointer-events: none; }
         @keyframes fall {
             0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
             20% { opacity: 0.7; }
@@ -28,40 +28,37 @@
 
         .container { height: 100vh; display: flex; align-items: center; justify-content: center; perspective: 1000px; }
         .card {
-            background: rgba(15, 0, 0, 0.7); backdrop-filter: blur(25px); border: 1px solid rgba(255, 77, 77, 0.2);
-            border-radius: 30px; padding: 50px; width: 90%; max-width: 800px; text-align: center;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5), 0 0 30px rgba(255,0,0,0.1);
-            transform-style: preserve-3d; transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(15, 0, 0, 0.8); backdrop-filter: blur(25px); border: 1px solid rgba(255, 77, 77, 0.3);
+            border-radius: 30px; padding: 50px; width: 95%; max-width: 850px; text-align: center;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.6), 0 0 40px rgba(255,0,0,0.2);
+            transform-style: preserve-3d; transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
             position: absolute; visibility: hidden; opacity: 0;
         }
         .card.active { visibility: visible; opacity: 1; transform: translateZ(0) rotateX(0); }
-        .card.prev { transform: translateZ(-100px) rotateX(10deg); opacity: 0; visibility: hidden; }
+        .card.prev { transform: translateZ(-150px) rotateX(15deg) translateY(-50px); opacity: 0; visibility: hidden; }
+        .card.next { transform: translateZ(150px) rotateX(-15deg) translateY(50px); opacity: 0; visibility: hidden; }
 
-        h1 { font-family: 'Dancing Script', cursive; font-size: 4em; color: #ff4d4d; text-shadow: 0 0 20px rgba(255,0,0,0.5); margin-bottom: 20px; }
-        p { font-size: 1.2em; line-height: 1.8; color: #ffcccc; margin-bottom: 30px; }
+        h1 { font-family: 'Dancing Script', cursive; font-size: 4.5em; color: #ff4d4d; text-shadow: 0 0 25px rgba(255,0,0,0.6); margin-bottom: 25px; }
+        h2 { font-family: 'Playfair Display', serif; font-size: 2em; color: #ffcccc; margin-bottom: 15px; }
+        p { font-size: 1.25em; line-height: 1.9; color: #ffe6e6; margin-bottom: 35px; }
+        
         .btn {
-            background: linear-gradient(45deg, #800000, #ff4d4d); color: white; border: none; padding: 15px 40px;
-            border-radius: 50px; font-size: 1.1em; font-weight: 600; text-transform: uppercase; letter-spacing: 2px;
-            transition: 0.3s; box-shadow: 0 10px 20px rgba(255,0,0,0.3);
+            background: linear-gradient(45deg, #800000, #ff4d4d); color: white; border: none; padding: 18px 50px;
+            border-radius: 60px; font-size: 1.2em; font-weight: 600; text-transform: uppercase; letter-spacing: 3px;
+            transition: 0.4s; box-shadow: 0 10px 25px rgba(255,0,0,0.4);
         }
-        .btn:hover { transform: scale(1.05); box-shadow: 0 15px 30px rgba(255,0,0,0.5); letter-spacing: 4px; }
+        .btn:hover { transform: scale(1.1); box-shadow: 0 15px 40px rgba(255,0,0,0.6); letter-spacing: 5px; }
 
-        .story-text { text-align: left; max-height: 300px; overflow-y: auto; padding-right: 15px; margin: 20px 0; font-family: 'Playfair Display', serif; font-style: italic; }
-        .story-text::-webkit-scrollbar { width: 5px; }
-        .story-text::-webkit-scrollbar-thumb { background: #ff4d4d; border-radius: 10px; }
+        .story-content { text-align: left; max-height: 350px; overflow-y: auto; padding-right: 20px; margin: 25px 0; font-family: 'Playfair Display', serif; font-style: italic; line-height: 2.2; font-size: 1.35em; color: #ffdfdf; }
+        .story-content::-webkit-scrollbar { width: 6px; }
+        .story-content::-webkit-scrollbar-thumb { background: #ff4d4d; border-radius: 12px; }
 
-        .rose-box { position: relative; width: 150px; height: 150px; margin: 0 auto 30px; }
-        .rose-center { width: 60px; height: 60px; background: #ff0000; border-radius: 50%; position: absolute; top: 45px; left: 45px; animation: pulse 2s infinite; box-shadow: 0 0 40px #ff0000; }
-        @keyframes pulse { 0% { transform: scale(0.9); } 50% { transform: scale(1.1); } 100% { transform: scale(0.9); } }
+        .progress-bar { position: fixed; top: 0; left: 0; height: 5px; background: #ff4d4d; transition: 0.3s; z-index: 1000; box-shadow: 0 0 10px #ff0000; }
+        
+        .floating-rose { position: absolute; font-size: 2em; animation: float 4s infinite ease-in-out; }
+        @keyframes float { 0%, 100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-20px) rotate(15deg); } }
 
-        .heart-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin: 20px 0; }
-        .mini-heart { color: #ff4d4d; font-size: 1.5em; opacity: 0.3; transition: 0.3s; }
-        .mini-heart.active { opacity: 1; transform: scale(1.3); }
-
-        .footer {
-            position: fixed; bottom: 20px; width: 100%; text-align: center; font-size: 0.9em;
-            color: rgba(255, 204, 204, 0.6); z-index: 100; font-family: 'Poppins', sans-serif;
-        }
+        .footer { position: fixed; bottom: 15px; width: 100%; text-align: center; font-size: 0.85em; color: rgba(255, 255, 255, 0.4); z-index: 100; }
         .footer b { color: #ff4d4d; }
     </style>
 </head>
@@ -69,107 +66,169 @@
     <div id="custom-cursor"></div>
     <div class="bg-layer"></div>
     <div id="petal-container"></div>
+    <div class="progress-bar" id="pbar" style="width: 8.33%;"></div>
 
     <div class="container">
-        <!-- Chapter 1 -->
+        <!-- Ch 1: Entrance -->
         <div class="card active" id="c1">
-            <div class="rose-box"><div class="rose-center"></div></div>
-            <h1>Hey Gorgeous...</h1>
-            <p>I hope you are ready for something special. This isn't just a wish; it's a journey through my heart. Are you ready to walk with me?</p>
-            <button class="btn" onclick="go(2)">I'm Ready ❤️</button>
+            <span class="floating-rose" style="top: -20px; left: 10%;">🌹</span>
+            <h1>My Beautiful Queen...</h1>
+            <p>Today is Feb 7, 2026. A day dedicated to the most beautiful flower in my life. I've written our story here, petal by petal. Take your time, read every word, and feel my heart.</p>
+            <button class="btn" onclick="go(2)">Step Into My Heart ❤️</button>
         </div>
 
-        <!-- Chapter 2 -->
+        <!-- Ch 2: The Seed -->
         <div class="card" id="c2">
-            <h1>The First Bloom</h1>
-            <div class="story-text">
-                "Do you remember the first time we talked? It felt like a tiny seed was planted in my heart. I didn't know then that it would grow into the most beautiful garden I've ever seen. You weren't just a person; you were the sunlight my soul had been waiting for."
+            <h2>Chapter 1: The Seed of Us</h2>
+            <div class="story-content">
+                "It started with a simple 'hello', didn't it? Back then, I didn't realize that single word was a seed being planted in the fertile ground of my soul. I watched as we shared laughs, late-night secrets, and small dreams. Every conversation was like a drop of water, helping that seed grow. You weren't just a friend; you were the potential for everything I ever wanted. I remember looking at you and thinking, 'This is it. This is the person who will change my world forever.' And oh, how you did."
             </div>
-            <p>Every second since then has been a petal added to our story...</p>
-            <button class="btn" onclick="go(3)">Keep Walking</button>
+            <button class="btn" onclick="go(3)">The First Leaf</button>
         </div>
 
-        <!-- Chapter 3 -->
+        <!-- Ch 3: The Growth -->
         <div class="card" id="c3">
-            <h1>Why You?</h1>
-            <div class="story-text">
-                "It's the way your eyes sparkle when you're excited. It's the way you say my name. It's the way you handle the thorns of life with such grace. People say roses have thorns, but I say you are the rose that makes even the thorns look beautiful."
+            <h2>Chapter 2: Growing Together</h2>
+            <div class="story-content">
+                "Growth isn't always easy. We've had our storms, our cloudy days where the sun seemed too far away. But like a resilient rose, we pushed through. Your kindness was my sunshine, and your strength was the soil that kept me grounded. I've learned more about love from you than any book could ever teach. You taught me that love isn't just a feeling; it's the choice to stay through the wind and the rain, knowing that the bloom is worth the wait."
             </div>
-            <p>Click the hearts to send me your love!</p>
-            <div class="heart-grid">
-                <div class="mini-heart" onclick="toggleHeart(this)">❤️</div>
-                <div class="mini-heart" onclick="toggleHeart(this)">❤️</div>
-                <div class="mini-heart" onclick="toggleHeart(this)">❤️</div>
-                <div class="mini-heart" onclick="toggleHeart(this)">❤️</div>
-                <div class="mini-heart" onclick="toggleHeart(this)">❤️</div>
-            </div>
-            <button class="btn" onclick="go(4)">Next Chapter</button>
+            <button class="btn" onclick="go(4)">The Thorns</button>
         </div>
 
-        <!-- Chapter 4 -->
+        <!-- Ch 4: The Thorns -->
         <div class="card" id="c4">
-            <h1>A Promise for 2026</h1>
-            <div class="story-text">
-                "On this Rose Day, Feb 7, 2026, I want to promise you something. I promise to be your gardener. I will water our love with patience, shield you from the storms, and ensure that our bond never withers. You are my forever bloom."
+            <h2>Chapter 3: Respecting the Thorns</h2>
+            <div class="story-content">
+                "They say every rose has its thorns. To me, our 'thorns'—our misunderstandings and hard times—are what make our love real. They protect us. They remind us that what we have is precious and needs to be handled with care. I cherish even our difficult moments because they showed me that even when things get sharp, I never want to let go of you. You are worth every scratch, every struggle, and every tear."
             </div>
-            <p>A rose for every dream we share...</p>
-            <button class="btn" onclick="go(5)">Wait, There's More</button>
+            <button class="btn" onclick="go(5)">The Fragrance</button>
         </div>
 
-        <!-- Chapter 5 -->
+        <!-- Ch 5: The Fragrance -->
         <div class="card" id="c5">
-            <h1>The Grand Wish</h1>
-            <div style="font-size: 5em;">🌹</div>
-            <h1 style="font-size: 3em;">Happy Rose Day!</h1>
-            <p style="font-size: 1.5em; color: #ff4d4d; font-weight: bold;">7th February 2026</p>
-            <p>To my beautiful girlfriend, you are the most precious flower in the universe. I love you more than words can ever express.</p>
-            <p style="font-family: 'Dancing Script'; font-size: 1.8em; color: #ff9999;">With all my love,<br><b>Sangam</b></p>
-            <button class="btn" onclick="magic()">Feel The Magic ✨</button>
+            <h2>Chapter 4: Your Soul's Fragrance</h2>
+            <div class="story-content">
+                "Have you ever noticed how a room lights up when you walk in? That's your fragrance, my love. It's not a perfume; it's the sweetness of your soul. It lingers in my mind long after we've said goodbye. It's the scent of comfort, of home, and of a future I can't wait to build with you. Every time I close my eyes, I can feel your presence around me, like the soft scent of a blooming garden in the early morning mist."
+            </div>
+            <button class="btn" onclick="go(6)">The Petals</button>
+        </div>
+
+        <!-- Ch 6: The Petals -->
+        <div class="card" id="c6">
+            <h2>Chapter 5: Softness & Strength</h2>
+            <div class="story-content">
+                "A rose petal is the perfect paradox—incredibly soft to the touch, yet strong enough to endure the elements. That is exactly who you are. Your heart is the softest place I know, full of empathy and warmth. Yet, your spirit is unbreakable. I've seen you face challenges with a grace that leaves me in awe. You are my soft place to land and my strongest pillar of support. I promise to always treat your heart with the tenderness it deserves."
+            </div>
+            <button class="btn" onclick="go(7)">The Color of Love</button>
+        </div>
+
+        <!-- Ch 7: Red -->
+        <div class="card" id="c7">
+            <h2>Chapter 6: Passionate Red</h2>
+            <div class="story-content">
+                "Red is the color of the rose, and it's the color of my passion for you. It's the fire in my heart when I see you smile. It's the heartbeat that quickens when you hold my hand. On this Rose Day 2026, I want you to know that my passion hasn't faded; it has only deepened. It has turned from a flicker into a steady, roaring flame that will burn for as long as I draw breath. You are my desire, my joy, and my greatest adventure."
+            </div>
+            <button class="btn" onclick="go(8)">Morning Dew</button>
+        </div>
+
+        <!-- Ch 8: Dew -->
+        <div class="card" id="c8">
+            <h2>Chapter 7: The Morning Dew</h2>
+            <div class="story-content">
+                "You are the morning dew on my petals—the freshness that starts my day. Without you, life would be dry and dusty. You bring a clarity and a sparkle to everything you touch. I love the way you make the ordinary feel extraordinary. Even a simple coffee date with you feels like a celebration. Thank you for refreshing my life every single day with your love and your infectious energy. You are my favorite way to start the day."
+            </div>
+            <button class="btn" onclick="go(9)">Deep Roots</button>
+        </div>
+
+        <!-- Ch 9: Roots -->
+        <div class="card" id="c9">
+            <h2>Chapter 8: Our Deep Roots</h2>
+            <div class="story-content">
+                "A rose is only as beautiful as its roots are deep. Our roots are now deep in the earth of trust and understanding. We know each other's shadows and light. We've built a foundation that can't be shaken by petty things. I feel so secure knowing that we are tied together by something much stronger than just attraction. We are tied by a shared history, shared values, and a shared dream of a life together. Our roots are intertwined forever."
+            </div>
+            <button class="btn" onclick="go(10)">The Sunlight</button>
+        </div>
+
+        <!-- Ch 10: Sunlight -->
+        <div class="card" id="c10">
+            <h2>Chapter 9: My Only Sunlight</h2>
+            <div class="story-content">
+                "You are my sun. Every good thing in my life grows because of the light you provide. You chase away my shadows and warm my coldest days. When I'm with you, I feel like I'm blooming in full color. I want to spend the rest of my Februaries—and every other month—basking in your light. I promise to always follow your warmth and to never take the light you bring into my life for granted. You are my radiant queen."
+            </div>
+            <button class="btn" onclick="go(11)">The Future Garden</button>
+        </div>
+
+        <!-- Ch 11: Future -->
+        <div class="card" id="c11">
+            <h2>Chapter 10: Our Future Garden</h2>
+            <div class="story-content">
+                "I look ahead and I see a garden. It's a garden we build together, day by day. I see us growing old, our petals perhaps fading but our fragrance only getting sweeter. I see us through every season of life—the spring of new beginnings, the summer of our prime, the autumn of reflection, and the winter of deep peace. I don't care where we are, as long as I'm planting my life next to yours. You are my forever home."
+            </div>
+            <button class="btn" onclick="go(12)">The Ultimate Wish</button>
+        </div>
+
+        <!-- Ch 12: Final -->
+        <div class="card" id="c12">
+            <span class="floating-rose" style="top: -30px; right: 10%;">🌹</span>
+            <h1>Happy Rose Day, My Love!</h1>
+            <p style="font-size: 1.6em; color: #ff4d4d; font-weight: bold; margin-bottom: 20px;">7th February 2026</p>
+            <div class="story-content" style="text-align: center; border-left: none; font-size: 1.5em;">
+                "You are more precious than all the roses in the world. This digital rose will never wither, just like my love for you. Thank you for being mine."
+            </div>
+            <p style="font-family: 'Dancing Script'; font-size: 2.2em; color: #ff9999;">Yours Forever,<br><b>Sangam</b></p>
+            <button class="btn" onclick="magic()">Spread The Magic ✨</button>
         </div>
     </div>
 
-    <div class="footer">
-        Made with ❤️ by <b>Er. Sangam Krishna</b> for His Special One
-    </div>
+    <div class="footer">Made with ❤️ by <b>Er. Sangam Krishna</b> for His Special One | 2026</div>
 
     <script>
-        // Cursor
         const cursor = document.getElementById('custom-cursor');
         document.addEventListener('mousemove', e => {
             cursor.style.left = e.clientX + 'px';
             cursor.style.top = e.clientY + 'px';
+            if(Math.random() > 0.95) spawnPetalAt(e.clientX, e.clientY);
         });
 
-        // Petals
+        function spawnPetalAt(x, y) {
+            const p = document.createElement('div');
+            p.className = 'petal';
+            p.style.left = x + 'px';
+            p.style.top = y + 'px';
+            p.style.width = '8px'; p.style.height = '8px';
+            p.style.animation = 'fall 2s forwards';
+            document.body.appendChild(p);
+            setTimeout(() => p.remove(), 2000);
+        }
+
         function createPetal() {
             const p = document.createElement('div');
             p.className = 'petal';
             p.style.left = Math.random() * 100 + 'vw';
-            const size = Math.random() * 15 + 10 + 'px';
+            const size = Math.random() * 20 + 10 + 'px';
             p.style.width = size; p.style.height = size;
             p.style.animationDuration = Math.random() * 5 + 5 + 's';
+            p.style.background = `hsl(${Math.random() * 20}, 100%, 50%)`;
             document.getElementById('petal-container').appendChild(p);
             setTimeout(() => p.remove(), 10000);
         }
-        setInterval(createPetal, 300);
+        setInterval(createPetal, 400);
 
-        // Navigation
         function go(num) {
-            document.querySelectorAll('.card').forEach(c => {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(c => {
                 c.classList.remove('active');
                 c.classList.add('prev');
             });
             const next = document.getElementById('c' + num);
             next.classList.remove('prev');
             next.classList.add('active');
+            document.getElementById('pbar').style.width = (num / 12 * 100) + '%';
         }
 
-        function toggleHeart(el) { el.classList.toggle('active'); }
-
         function magic() {
-            for(let i=0; i<100; i++) setTimeout(createPetal, i * 20);
-            alert('🌹 My Heart is Yours Forever! 🌹
-- Sangam');
+            for(let i=0; i<150; i++) setTimeout(createPetal, i * 15);
+            alert('🌹 A thousand roses for you, my love! Happy Rose Day! 🌹');
         }
     </script>
 </body>
