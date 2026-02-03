@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Love 💖</title>
+    <title>Rose Day Special 🌹</title>
     <style>
         * {
             margin: 0;
@@ -12,10 +12,21 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Playfair Display', serif;
             overflow-x: hidden;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #000;
             min-height: 100vh;
+            color: #fff;
+        }
+
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, #4a0000 0%, #000 100%);
+            z-index: -1;
         }
 
         .particles {
@@ -28,46 +39,23 @@
             z-index: 1;
         }
 
-        .heart {
+        .petal {
             position: absolute;
-            width: 20px;
-            height: 20px;
-            background: #ff6b9d;
-            transform: rotate(45deg);
-            animation: float 6s infinite ease-in-out;
-            opacity: 0.7;
+            background: #ff4d4d;
+            border-radius: 150% 0 150% 0;
+            opacity: 0.6;
+            animation: fall linear infinite;
         }
 
-        .heart:before,
-        .heart:after {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: #ff6b9d;
-            border-radius: 50%;
-        }
-
-        .heart:before {
-            top: -10px;
-            left: 0;
-        }
-
-        .heart:after {
-            left: -10px;
-            top: 0;
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0) rotate(45deg);
+        @keyframes fall {
+            0% {
+                transform: translateY(-10vh) rotate(0deg);
                 opacity: 0;
             }
-            50% {
-                opacity: 0.7;
-            }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
             100% {
-                transform: translateY(-100vh) rotate(45deg);
+                transform: translateY(110vh) rotate(720deg);
                 opacity: 0;
             }
         }
@@ -84,284 +72,248 @@
         }
 
         .card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 30px;
+            background: rgba(20, 0, 0, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 77, 77, 0.3);
+            border-radius: 40px;
             padding: 60px 40px;
-            max-width: 600px;
+            max-width: 700px;
             width: 100%;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 0 50px rgba(255, 0, 0, 0.2);
             text-align: center;
-            animation: slideIn 1s ease-out;
+            animation: fadeInScale 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
         }
 
-        .card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transform: rotate(45deg);
-            animation: shimmer 3s infinite;
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
         }
 
-        @keyframes shimmer {
-            0% {
-                transform: translateX(-100%) rotate(45deg);
-            }
-            100% {
-                transform: translateX(100%) rotate(45deg);
-            }
+        .rose-icon {
+            font-size: 100px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 20px #ff0000);
+            animation: float 3s infinite ease-in-out;
         }
 
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .emoji {
-            font-size: 80px;
-            animation: pulse 2s infinite;
-            display: inline-block;
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.2);
-            }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
         }
 
         h1 {
-            color: #667eea;
-            font-size: 3em;
+            font-size: 3.5em;
             margin: 20px 0;
-            background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+            background: linear-gradient(135deg, #ff4d4d, #ff9999, #cc0000);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: fadeIn 1.5s ease-in;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+            font-weight: 900;
+            letter-spacing: 2px;
         }
 
         .message {
-            font-size: 1.3em;
-            color: #555;
+            font-size: 1.4em;
+            color: #ffcccc;
             line-height: 1.8;
             margin: 30px 0;
-            animation: fadeIn 2s ease-in;
+            font-weight: 300;
         }
 
         .highlight {
-            color: #ff6b9d;
+            color: #ff4d4d;
             font-weight: bold;
-            font-size: 1.1em;
+            text-shadow: 0 0 10px rgba(255, 77, 77, 0.5);
         }
 
         .button {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(45deg, #cc0000, #ff4d4d);
             color: white;
-            padding: 15px 40px;
+            padding: 18px 45px;
             border: none;
-            border-radius: 50px;
-            font-size: 1.2em;
+            border-radius: 100px;
+            font-size: 1.3em;
             cursor: pointer;
             margin: 20px 10px;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
-            animation: fadeIn 2.5s ease-in;
-        }
-
-        .button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        .countdown {
-            font-size: 2em;
-            color: #667eea;
-            margin: 20px 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 30px rgba(204, 0, 0, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 2px;
             font-weight: bold;
         }
 
-        .love-quote {
+        .button:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 20px 50px rgba(255, 77, 77, 0.6);
+            letter-spacing: 4px;
+        }
+
+        .hidden { display: none; }
+
+        .quote {
             font-style: italic;
-            color: #764ba2;
-            margin: 20px 0;
-            font-size: 1.1em;
+            color: #ff9999;
+            margin: 25px 0;
+            font-size: 1.2em;
+            border-left: 4px solid #cc0000;
+            padding-left: 20px;
+            text-align: left;
+        }
+
+        .rose-visual {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Ultimate UI Component: Animated blooming rose */
+        .ultimate-rose {
+            width: 100px;
+            height: 100px;
+            background: #cc0000;
+            border-radius: 50% 50% 50% 50%;
+            position: relative;
+            margin: 50px auto;
+            animation: bloom 4s infinite alternate;
+        }
+
+        @keyframes bloom {
+            0% { transform: scale(0.8); box-shadow: 0 0 10px #ff0000; }
+            100% { transform: scale(1.2); box-shadow: 0 0 40px #ff0000; }
         }
 
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2em;
-            }
-            .card {
-                padding: 40px 20px;
-            }
-            .message {
-                font-size: 1.1em;
-            }
+            h1 { font-size: 2.2em; }
+            .card { padding: 40px 20px; }
+            .message { font-size: 1.1em; }
         }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,900;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="bg-gradient"></div>
     <div class="particles" id="particles"></div>
     
     <div class="container">
+        <!-- Page 1: Intro -->
         <div class="card" id="page1">
-            <div class="emoji">💖</div>
-            <h1>Hey Beautiful!</h1>
+            <div class="rose-icon">🌹</div>
+            <h1>Rose Day 2026</h1>
             <p class="message">
-                Something special is waiting for you...
+                Every love story is beautiful, but <span class="highlight">ours</span> is my favorite.
             </p>
-            <button class="button" onclick="nextPage(2)">Open Your Surprise</button>
+            <button class="button" onclick="nextPage(2)">Accept My Rose</button>
         </div>
 
+        <!-- Page 2: The Meaning -->
         <div class="card hidden" id="page2">
-            <div class="emoji">✨</div>
-            <h1>February 7th, 2026</h1>
-            <div class="countdown" id="countdown"></div>
+            <div class="rose-icon">❤️</div>
+            <h1>A Rose for You</h1>
+            <div class="ultimate-rose"></div>
             <p class="message">
-                A day made special because <span class="highlight">you</span> exist!
+                A red rose is a symbol of <span class="highlight">passionate love</span>. 
+                I give you this digital rose to remind you that my love for you blooms brighter every single day.
             </p>
-            <button class="button" onclick="nextPage(3)">Continue</button>
+            <button class="button" onclick="nextPage(3)">See More</button>
         </div>
 
+        <!-- Page 3: Ultimate Message -->
         <div class="card hidden" id="page3">
-            <div class="emoji">💝</div>
-            <h1>You Mean Everything</h1>
+            <div class="rose-icon">💍</div>
+            <h1>My Promise</h1>
+            <div class="quote">
+                "As the rose is the queen of the flowers, you are the queen of my heart. I promise to protect you from the thorns of life and shower you with the petals of happiness."
+            </div>
             <p class="message">
-                Every moment with you is like a dream come true. Your smile brightens my darkest days, and your laugh is my favorite melody.
+                On this Rose Day, I want to tell you that you are more precious to me than the rarest rose in the world.
             </p>
-            <p class="love-quote">
-                "In you, I've found the love of my life and my closest, truest friend."
-            </p>
-            <button class="button" onclick="nextPage(4)">Keep Reading</button>
+            <button class="button" onclick="nextPage(4)">Final Surprise</button>
         </div>
 
+        <!-- Page 4: The Wish -->
         <div class="card hidden" id="page4">
-            <div class="emoji">🌹</div>
-            <h1>My Promise to You</h1>
+            <div class="rose-icon">✨</div>
+            <h1>Happy Rose Day!</h1>
             <p class="message">
-                I promise to always make you smile, to support your dreams, to hold your hand through every adventure, and to love you more with each passing day.
+                To the girl who makes my life smell like a garden of roses...
             </p>
-            <button class="button" onclick="nextPage(5)">Almost There</button>
-        </div>
-
-        <div class="card hidden" id="page5">
-            <div class="emoji">💑</div>
-            <h1>Happy 7th February!</h1>
-            <p class="message">
-                Today and every day, I want you to know how incredibly special you are to me. You make my world complete, and I'm so grateful to have you in my life.
+            <p style="font-size: 2.5em; font-weight: 900; color: #ff4d4d; margin: 20px 0;">
+                I LOVE YOU! 💕
             </p>
-            <p class="message highlight">
-                I Love You More Than Words Can Express! 💕
-            </p>
-            <button class="button" onclick="showFireworks()">See the Magic ✨</button>
+            <button class="button" onclick="magicEffect()">Feel The Magic 🪄</button>
         </div>
     </div>
 
     <script>
-        // Create floating hearts
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.className = 'heart';
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
-            heart.style.animationDelay = Math.random() * 2 + 's';
-            document.getElementById('particles').appendChild(heart);
+        // Create falling petals
+        function createPetal() {
+            const petal = document.createElement('div');
+            petal.className = 'petal';
+            const size = Math.random() * 15 + 10 + 'px';
+            petal.style.width = size;
+            petal.style.height = size;
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.animationDuration = Math.random() * 5 + 5 + 's';
+            petal.style.animationDelay = Math.random() * 2 + 's';
             
-            setTimeout(() => {
-                heart.remove();
-            }, 8000);
+            // Random petal colors (shades of red)
+            const reds = ['#ff4d4d', '#cc0000', '#ff8080', '#990000'];
+            petal.style.background = reds[Math.floor(Math.random() * reds.length)];
+            
+            document.getElementById('particles').appendChild(petal);
+            
+            setTimeout(() => petal.remove(), 10000);
         }
 
-        setInterval(createHeart, 300);
+        setInterval(createPetal, 200);
 
-        // Page navigation
-        function nextPage(pageNum) {
-            document.querySelectorAll('.card').forEach(card => {
-                card.classList.add('hidden');
-            });
-            document.getElementById('page' + pageNum).classList.remove('hidden');
+        function nextPage(num) {
+            document.querySelectorAll('.card').forEach(c => c.classList.add('hidden'));
+            const nextPage = document.getElementById('page' + num);
+            nextPage.classList.remove('hidden');
+            
+            // Special transition effect
+            nextPage.style.animation = 'none';
+            nextPage.offsetHeight; // trigger reflow
+            nextPage.style.animation = 'fadeInScale 1s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
         }
 
-        // Countdown
-        function updateCountdown() {
-            const target = new Date('2026-02-07T00:00:00');
-            const now = new Date();
-            const diff = target - now;
-
-            if (diff > 0) {
-                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-                
-                document.getElementById('countdown').textContent = 
-                    `${days}d ${hours}h ${minutes}m ${seconds}s`;
-            } else {
-                document.getElementById('countdown').textContent = "Today is the day! 🎉";
+        function magicEffect() {
+            // Intense petal explosion
+            for(let i=0; i<50; i++) {
+                setTimeout(createPetal, i * 20);
             }
+            alert('🌹❤️ Happy Rose Day, My Love! ❤️🌹
+
+You are my forever bloom!');
         }
 
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
-
-        // Fireworks effect
-        function showFireworks() {
-            alert('🎆🎇 Imagine beautiful fireworks lighting up the sky just for you! 🎇🎆\n\nYou deserve all the happiness in the world!\n\nWith all my love ❤️');
-        }
-
-        // Add some interactivity
+        // Mouse interaction: Trail of small rose petals
         document.addEventListener('mousemove', (e) => {
-            if (Math.random() > 0.95) {
-                const sparkle = document.createElement('div');
-                sparkle.style.position = 'fixed';
-                sparkle.style.left = e.clientX + 'px';
-                sparkle.style.top = e.clientY + 'px';
-                sparkle.style.width = '5px';
-                sparkle.style.height = '5px';
-                sparkle.style.background = '#fff';
-                sparkle.style.borderRadius = '50%';
-                sparkle.style.pointerEvents = 'none';
-                sparkle.style.zIndex = '9999';
-                sparkle.style.animation = 'fadeOut 1s ease-out';
-                document.body.appendChild(sparkle);
-                
-                setTimeout(() => sparkle.remove(), 1000);
+            if (Math.random() > 0.9) {
+                const p = document.createElement('div');
+                p.style.position = 'fixed';
+                p.style.left = e.clientX + 'px';
+                p.style.top = e.clientY + 'px';
+                p.style.width = '8px';
+                p.style.height = '8px';
+                p.style.background = '#ff4d4d';
+                p.style.borderRadius = '50% 0 50% 0';
+                p.style.pointerEvents = 'none';
+                p.style.zIndex = '9999';
+                p.style.animation = 'petalFade 1s forwards';
+                document.body.appendChild(p);
+                setTimeout(() => p.remove(), 1000);
             }
         });
 
         const style = document.createElement('style');
         style.textContent = `
-            @keyframes fadeOut {
-                from { opacity: 1; transform: scale(1); }
-                to { opacity: 0; transform: scale(0); }
+            @keyframes petalFade {
+                0% { transform: translate(0,0) rotate(0deg); opacity: 1; }
+                100% { transform: translate(20px, 50px) rotate(180deg); opacity: 0; }
             }
         `;
         document.head.appendChild(style);
